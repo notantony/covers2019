@@ -73,7 +73,7 @@ Parameters when json: \
 List of suggested crops. \
 For each crop: \
 `score`:  quality [0, 1] \
-`box`: 4-element list of coordinates of the object, clockwise, starting from the top left corner. <b> Coordinates are global. </b> 
+`crop`: 4-element list of crop coordinates, clockwise, starting from the top left corner. <b> Coordinates are global. </b> 
 
 <details>
   <summary> <b>Sample: </b> </summary> 
