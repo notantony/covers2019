@@ -1,7 +1,6 @@
 import base64
 
-from flask import request
 
-
-def save_image(target_dir, image_data, format):
-    flask.request()
+def save_image(image_path, data):
+    with open(image_path, "wb") as image_file:
+        image_file.write(data)

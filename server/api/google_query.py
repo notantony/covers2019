@@ -32,10 +32,10 @@ def get_boxes(image_path):
         ]
         result.append(entry)
 
-    return json.dumps(result)
+    return result
 
 
-def get_crops(image_path, ratio=3/4, n_results=50):
+def get_crops(image_path, aspect_ratio, n_results=50):
     client = vision.ImageAnnotatorClient()
 
     with open(image_path, "rb") as file:
@@ -44,7 +44,7 @@ def get_crops(image_path, ratio=3/4, n_results=50):
     response = client.crop_hints(
         image=types.Image(content=content),
         max_results=n_results,
-        image_context=types.ImageContext(crop_hints_params={"aspect_ratios": [ratio]})
+        image_context=types.ImageContext(crop_hints_params={"aspect_ratios": [aspect_ratio]})
     )
     
     result = []
@@ -57,4 +57,4 @@ def get_crops(image_path, ratio=3/4, n_results=50):
         ]
         result.append(entry)
 
-    return json.dumps(result)
+    return result
