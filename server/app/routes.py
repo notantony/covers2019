@@ -27,7 +27,7 @@ def get_boxes():
             json_data = json.loads(request.get_data())
             data = base64.decodebytes(json_data["data"].encode())
             extension = json_data["type"]
-            image_path = os.path.join(tmpdir, "image.png")
+            image_path = os.path.join(tmpdir, "image.{}".format(extension))
         else:
             return "Unsupported MIME type: `{}`".format(request.mimetype)
         
@@ -47,7 +47,7 @@ def get_crops():
             json_data = json.loads(request.get_data())
             data = base64.b64decode(json_data["data"])
             extension = json_data["type"]
-            image_path = os.path.join(tmpdir, "image.png")
+            image_path = os.path.join(tmpdir, "image.{}".format(extension))
             if "aspect_ratio" in json_data:
                 aspect_ratio_str = json_data["aspect_ratio"]
                 try:
