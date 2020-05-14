@@ -1,3 +1,7 @@
+# Child repositories
+[Cropping & composition server](https://github.com/notantony/Grid-Anchor-based-Image-Cropping-Pytorch) \
+[Semantic segmentation server](https://github.com/notantony/semantic-segmentation-pytorch)
+
 # API
 
 ## Object detection
