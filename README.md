@@ -9,7 +9,7 @@ Object detection via Google Cloud.
 
 #### Input:
 Address: `/detection`, POST \
-MIMEs: `applcation/json`, `image/jpeg`
+MIMEs: `applcation/json`, `image/jpeg`, `image/png`
 
 Parameters when json: \
 `data`: base64-encoded image \
@@ -66,7 +66,8 @@ Best shot suggestion via Google Cloud.
 
 #### Input:
 Address: `/crop-gcloud`, POST \
-MIMEs: `applcation/json`, `image/jpeg` (3/4 aspect ratio only)
+MIMEs: `applcation/json` \
+`image/jpeg`, `image/png` -- 3/4 aspect ratio only
 
 Parameters when json: \
 `data`: base64-encoded image \
