@@ -21,7 +21,7 @@ def index():
 
 
 @app.route('/detection', methods=['POST'])
-def get_boxes():
+def detection():
     with tempfile.TemporaryDirectory("box-session") as tmpdir:
         if request.mimetype == "image/jpeg" or request.mimetype == "image/png":
             image_data = request.get_data()
@@ -37,7 +37,7 @@ def get_boxes():
 
 # TODO: refactor processing
 @app.route('/crop-gcloud', methods=['POST'])
-def get_crops():
+def crop_gcloud():
     with tempfile.TemporaryDirectory("crop-session") as tmpdir:
         aspect_ratio = 3/4
         if request.mimetype == "image/jpeg" or request.mimetype == "image/png":
