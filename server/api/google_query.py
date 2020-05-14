@@ -2,18 +2,14 @@ import json
 
 from google.cloud import vision
 from google.cloud.vision import types
-from google.cloud import vision_v1
 
 
-def get_boxes(image_path):
+def get_boxes(image_data):
     client = vision.ImageAnnotatorClient()
-    
-    with open(image_path, "rb") as file:
-        content = file.read()
     
     request = {
         'image': {
-            'content': content,
+            'content': image_data,
         },
         'features': [
             {'type': vision.enums.Feature.Type.OBJECT_LOCALIZATION},
@@ -35,14 +31,11 @@ def get_boxes(image_path):
     return result
 
 
-def get_crops(image_path, aspect_ratio, n_results=50):
+def get_crops(image_data, aspect_ratio, n_results=50):
     client = vision.ImageAnnotatorClient()
 
-    with open(image_path, "rb") as file:
-        content = file.read()
-
     response = client.crop_hints(
-        image=types.Image(content=content),
+        image=types.Image(content=image_data),
         max_results=n_results,
         image_context=types.ImageContext(crop_hints_params={"aspect_ratios": [aspect_ratio]})
     )

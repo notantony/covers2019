@@ -1,13 +1,16 @@
 import tempfile
 import base64
-import os
 import util
 import json
 import flask
 import re
+import PIL
 
-from app import app
+
 from flask import request
+from PIL import Image
+from io import BytesIO
+from app import app
 from api import google_query
 
 
@@ -20,19 +23,16 @@ def index():
 @app.route('/detection', methods=['POST'])
 def get_boxes():
     with tempfile.TemporaryDirectory("box-session") as tmpdir:
-        if request.mimetype == "image/jpeg":
-            image_path = os.path.join(tmpdir, "image.jpeg")
-            data = request.get_data()
+        if request.mimetype == "image/jpeg" or request.mimetype == "image/png":
+            image_data = request.get_data()
         elif request.mimetype == "application/json":
             json_data = json.loads(request.get_data())
-            data = base64.decodebytes(json_data["data"].encode())
-            extension = json_data["type"]
-            image_path = os.path.join(tmpdir, "image.png")
+            image_data = base64.decodebytes(json_data["data"].encode())
+            _extension = json_data["type"]
         else:
             return "Unsupported MIME type: `{}`".format(request.mimetype)
-        
-        util.save_image(image_path, data)
-        return flask.jsonify(google_query.get_boxes(image_path))
+
+        return flask.jsonify(google_query.get_boxes(image_data))
 
 
 # TODO: refactor processing
@@ -40,14 +40,12 @@ def get_boxes():
 def get_crops():
     with tempfile.TemporaryDirectory("crop-session") as tmpdir:
         aspect_ratio = 3/4
-        if request.mimetype == "image/jpeg":
-            image_path = os.path.join(tmpdir, "image.jpeg")
-            data = request.get_data()
+        if request.mimetype == "image/jpeg" or request.mimetype == "image/png":
+            image_data = request.get_data()
         elif request.mimetype == "application/json":
             json_data = json.loads(request.get_data())
-            data = base64.b64decode(json_data["data"])
-            extension = json_data["type"]
-            image_path = os.path.join(tmpdir, "image.png")
+            image_data = base64.b64decode(json_data["data"])
+            _extension = json_data["type"]
             if "aspect_ratio" in json_data:
                 aspect_ratio_str = json_data["aspect_ratio"]
                 try:
@@ -61,8 +59,7 @@ def get_crops():
         else:
             return "Unsupported MIME type: `{}`".format(request.mimetype)
         
-        util.save_image(image_path, data)
-        return flask.jsonify(google_query.get_crops(image_path, aspect_ratio))
+        return flask.jsonify(google_query.get_crops(image_data, aspect_ratio))
 
 
 # @app.route('/bgrm', methods=['POST'])
@@ -75,3 +72,5 @@ def get_crops():
 #         with open(imgpath, "wb") as imgfile:
 #             imgfile.write(request.get_data())
 #         return google_query.get_boxes(imgpath)
+
+# @app.run
