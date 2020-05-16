@@ -12,7 +12,7 @@ Address: `/detection`, POST \
 MIMEs: `applcation/json`, `image/jpeg`, `image/png`
 
 Parameters when json: \
-`data`: base64-encoded image \
+`data`: base64-encoded image. \
 `type`: optional, image extension. Can be omitted for most of extensions.
 
 #### Output:
