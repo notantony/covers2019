@@ -1,17 +1,16 @@
 import tempfile
 import base64
-import util
 import json
 import flask
 import re
 import PIL
 
-
 from flask import request
 from PIL import Image
 from io import BytesIO
-from app import app
-from api import google_query
+from server.app import app
+from server.api import google_query
+from server.api import object_cropping
 
 
 @app.route('/')
@@ -73,4 +72,10 @@ def crop_gcloud():
 #             imgfile.write(request.get_data())
 #         return google_query.get_boxes(imgpath)
 
-# @app.run
+# @app.route('/test', methods=['POST'])
+# def test():
+#     image_data = request.get_data()
+#     # json_data = json.loads(request.get_data())
+#     res = object_cropping.crop_objects_query(base64.b64decode(image_data))
+#     print(len(res))
+#     return ""
