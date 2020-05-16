@@ -18,8 +18,8 @@ Parameters when json: \
 #### Output:
 List of detected objects. \
 For each object: \
-`name`: recognized object \
-`score`: confidence in range [0, 1] \
+`name`: recognized object. \
+`score`: confidence in range [0, 1]. \
 `box`: 4-element list of coordinates of the object, clockwise, starting from the top left corner. <b> Coordinates are floating-point proportions in range [0, 1]. </b> 
 
 
@@ -66,18 +66,18 @@ Best shot suggestion via Google Cloud.
 
 #### Input:
 Address: `/crop-gcloud`, POST \
-MIMEs: `applcation/json` \
+MIMEs: `application/json` \
 `image/jpeg`, `image/png` -- 3/4 aspect ratio only
 
 Parameters when json: \
-`data`: base64-encoded image \
-`ratio`: resulting image aspect ratio, float or (a/b)-like \
+`data`: base64-encoded image. \
+`ratio`: resulting image aspect ratio, float or (a/b)-like. \
 `type`: optional, image extension. Can be omitted for most of extensions.
 
 #### Output:
 List of suggested crops. \
 For each crop: \
-`score`:  quality [0, 1] \
+`score`:  quality [0, 1]. \
 `crop`: 4-element list of crop coordinates, clockwise, starting from the top left corner. <b> Coordinates are global. </b> 
 
 <details>
