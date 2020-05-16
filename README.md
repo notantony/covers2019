@@ -13,7 +13,7 @@ MIMEs: `applcation/json`, `image/jpeg`, `image/png`
 
 Parameters when json: \
 `data`: base64-encoded image \
-`type`: image extension
+`type`: optional, image extension. Can be omitted for most of extensions.
 
 #### Output:
 List of detected objects. \
@@ -71,8 +71,8 @@ MIMEs: `applcation/json` \
 
 Parameters when json: \
 `data`: base64-encoded image \
-`type`: image extension \
-`ratio`: resulting image aspect ratio, float or (a/b)-like
+`ratio`: resulting image aspect ratio, float or (a/b)-like \
+`type`: optional, image extension. Can be omitted for most of extensions.
 
 #### Output:
 List of suggested crops. \
