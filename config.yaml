@@ -1,1 +1,2 @@
 segmentation: "http://localhost:5050/segmentation"
+colormap: "http://localhost:5050/colormap"

@@ -10,7 +10,7 @@ from PIL import Image
 from io import BytesIO
 from server.app import app
 from server.api import google_query
-from server.api import object_cropping
+from server.api import segmentation_queries
 
 
 @app.route('/')
@@ -76,6 +76,14 @@ def crop_gcloud():
 # def test():
 #     image_data = request.get_data()
 #     # json_data = json.loads(request.get_data())
-#     res = object_cropping.crop_objects_query(base64.b64decode(image_data))
+#     res = segmentation_queries.crop_objects_query(base64.b64decode(image_data))
 #     print(len(res))
 #     return ""
+
+# @app.route('/test', methods=['POST'])
+# def test():
+#     image_data = request.get_data()
+#     # json_data = json.loads(request.get_data())
+#     res = segmentation_queries.colormap_query(image_data_b64=image_data)
+#     # print(res)
+#     return res

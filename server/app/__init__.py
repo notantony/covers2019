@@ -14,3 +14,4 @@ class Сonfig():
         with open(cfg_path, "r") as config_fd:
             yaml_cfg = yaml.load(config_fd)
         self.segmentation_addr = yaml_cfg["segmentation"]
+        self.colormap_addr = yaml_cfg["colormap"]
