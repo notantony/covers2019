@@ -1,6 +1,7 @@
 # Child repositories
 [Cropping & composition server](https://github.com/notantony/Grid-Anchor-based-Image-Cropping-Pytorch) \
-[Semantic segmentation server](https://github.com/notantony/semantic-segmentation-pytorch)
+[Semantic segmentation server](https://github.com/notantony/semantic-segmentation-pytorch) \
+[Depth estimation server](https://github.com/notantony/DenseDepth)
 
 # API
 
