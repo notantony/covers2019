@@ -62,10 +62,8 @@ def colormap_query(image_data=None, image_data_b64=None, image_type=None):
     if image_type is not None:
         payload["image_type"] = image_type
 
-    try:
-        request = requests.post(server.app.config.colormap_addr, json=payload, timeout=SEGMENTATION_TIMEOUT)
-    except requests.exceptions.Timeout as e:
-        warnings.warn("Request timeout: {}".format(e))
+    # Throws requests.exceptions.Timeout
+    request = requests.post(server.app.config.colormap_addr, json=payload, timeout=SEGMENTATION_TIMEOUT)
     
     if request.status_code != 200:
         raise RuntimeError("Error: received {} status code with response:\n`{}`".format(request.status_code, request.text))
