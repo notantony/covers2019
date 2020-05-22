@@ -10,6 +10,7 @@ from io import BytesIO
 from server.app import app
 from server.api import google_query
 from server.api import segmentation_queries
+from server.api import depth_queries
 
 
 @app.route('/')
@@ -81,5 +82,13 @@ def crop_gcloud():
 #     image_data = request.get_data()
 #     # json_data = json.loads(request.get_data())
 #     res = segmentation_queries.colormap_query(image_data_b64=image_data)
+#     # print(res)
+#     return res
+
+# @app.route('/test', methods=['POST'])
+# def test():
+#     image_data = request.get_data()
+#     # json_data = json.loads(request.get_data())
+#     res = depth_queries.depthmap_query(image_data_b64=image_data.decode())
 #     # print(res)
 #     return res
